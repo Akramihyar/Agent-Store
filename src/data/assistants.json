@@ -1,0 +1,5 @@
+[
+  { "id": "support", "name": "Support Assistant", "description": "Answers customer support questions." },
+  { "id": "sales", "name": "Sales Assistant", "description": "Helps with product discovery and quotes." },
+  { "id": "ops", "name": "Ops Assistant", "description": "Assists with operational tasks and checklists." }
+]

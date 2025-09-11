@@ -1,0 +1,17 @@
+{
+  "navigation": {
+    "mainNav": [
+      { "name": "Projects", "href": "#" },
+      { "name": "Chats", "href": "#" },
+      { "name": "Prompts", "href": "#" },
+      { "name": "AI Assistants", "href": "#" },
+      { "name": "AI Apps", "href": "#" }
+    ],
+    "secondaryNav": [
+      { "name": "Updates", "href": "#" },
+      { "name": "Search", "href": "#" },
+      { "name": "Settings", "href": "#" },
+      { "name": "Faq Chat", "href": "#" }
+    ]
+  }
+}
