@@ -36,7 +36,7 @@ export default function LandingAnalyzerForm({ badgeLabel }: { badgeLabel: string
   // Poll job status
   const pollJobStatus = async (jobId: string) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/landing-analyzer/status/${jobId}`);
+      const response = await fetch(`${API_BASE_URL}/api/landing-analyzer/status?jobId=${jobId}`);
       
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);

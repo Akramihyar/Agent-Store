@@ -36,7 +36,7 @@ export default function SEOMissionForm({ badgeLabel }: { badgeLabel: string; age
   // Poll job status
   const pollJobStatus = async (jobId: string) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/seo/status/${jobId}`);
+      const response = await fetch(`${API_BASE_URL}/api/seo/status?jobId=${jobId}`);
       
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
