@@ -4,6 +4,6 @@
   "description": "Agent Store Backend API for Vercel Functions",
   "dependencies": {},
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   }
 }
