@@ -1,16 +1,19 @@
-// Persistent job storage using Vercel KV
-import { kv } from '@vercel/kv';
+// Persistent job storage using Upstash Redis
+import { Redis } from '@upstash/redis';
 
-// Job storage interface that mimics Map but uses KV
+const redis = Redis.fromEnv();
+
+// Job storage interface that mimics Map but uses Redis
 const jobs = {
   async set(jobId, jobData) {
-    await kv.set(`job:${jobId}`, jobData, { ex: 86400 }); // 24 hour expiry
-    console.log('💾 Job stored in KV:', jobId);
+    await redis.setex(`job:${jobId}`, 86400, JSON.stringify(jobData)); // 24 hour expiry
+    console.log('💾 Job stored in Redis:', jobId);
   },
 
   async get(jobId) {
-    const job = await kv.get(`job:${jobId}`);
-    console.log('📖 Job retrieved from KV:', jobId, job ? 'found' : 'not found');
+    const jobString = await redis.get(`job:${jobId}`);
+    const job = jobString ? JSON.parse(jobString) : null;
+    console.log('📖 Job retrieved from Redis:', jobId, job ? 'found' : 'not found');
     return job;
   },
 
