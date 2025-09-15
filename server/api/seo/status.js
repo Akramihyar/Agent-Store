@@ -21,10 +21,9 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'jobId query parameter is required' });
   }
 
-  console.log('Looking for SEO job:', jobId);
-  console.log('Available jobs:', Array.from(jobs.keys()));
+  console.log('🔍 Looking for SEO job:', jobId);
 
-  const job = jobs.get(jobId);
+  const job = await jobs.get(jobId);
   if (!job) {
     return res.status(404).json({
       error: 'Job not found',

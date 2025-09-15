@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'job_id is required' });
   }
 
-  const job = jobs.get(job_id);
+  const job = await jobs.get(job_id);
   if (!job) {
     console.error('SEO job not found:', job_id);
     return res.status(404).json({ error: 'Job not found' });
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
   job.result = req.body;
   job.completedAt = new Date().toISOString();
 
-  jobs.set(job_id, job);
+  await jobs.set(job_id, job);
   console.log('Updated SEO job:', job);
 
   res.json({ success: true });

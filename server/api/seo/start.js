@@ -23,13 +23,17 @@ export default async function handler(req, res) {
   const jobId = generateJobId();
 
   // Store job info
-  jobs.set(jobId, {
+  const newJob = {
     id: jobId,
     url: url,
     status: 'pending',
     createdAt: new Date().toISOString(),
     result: null
-  });
+  };
+
+  await jobs.set(jobId, newJob);
+  console.log('✅ SEO Job created:', jobId);
+  console.log('🗂️ SEO Job details:', newJob);
 
   // Send job to n8n with callback URL
   const host = req.headers['x-forwarded-host'] || req.headers.host;
@@ -52,10 +56,10 @@ export default async function handler(req, res) {
 
     if (response.ok) {
       // Update job status
-      const job = jobs.get(jobId);
+      const job = await jobs.get(jobId);
       if (job) {
         job.status = 'processing';
-        jobs.set(jobId, job);
+        await jobs.set(jobId, job);
       }
 
       res.json({
@@ -65,11 +69,11 @@ export default async function handler(req, res) {
       });
     } else {
       // Failed to start
-      const job = jobs.get(jobId);
+      const job = await jobs.get(jobId);
       if (job) {
         job.status = 'failed';
         job.error = `Failed to start SEO analysis: ${response.status}`;
-        jobs.set(jobId, job);
+        await jobs.set(jobId, job);
       }
 
       res.status(500).json({
@@ -79,11 +83,11 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('Error starting SEO analysis:', error);
 
-    const job = jobs.get(jobId);
+    const job = await jobs.get(jobId);
     if (job) {
       job.status = 'failed';
       job.error = error.message;
-      jobs.set(jobId, job);
+      await jobs.set(jobId, job);
     }
 
     res.status(500).json({
