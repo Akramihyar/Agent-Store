@@ -21,8 +21,13 @@ const jobs = {
       return;
     }
     try {
-      await redis.setex(`job:${jobId}`, 86400, JSON.stringify(jobData)); // 24 hour expiry
-      console.log('💾 Job stored in Redis:', jobId);
+      // Ensure we have a proper object to serialize
+      const dataToStore = typeof jobData === 'object' ? jobData : { data: jobData };
+      const jsonString = JSON.stringify(dataToStore);
+
+      console.log('💾 Storing job in Redis:', jobId, 'Data:', jsonString);
+      await redis.setex(`job:${jobId}`, 86400, jsonString); // 24 hour expiry
+      console.log('✅ Job stored successfully in Redis:', jobId);
     } catch (error) {
       console.error('❌ Failed to store job in Redis:', error);
     }
@@ -35,11 +40,25 @@ const jobs = {
     }
     try {
       const jobString = await redis.get(`job:${jobId}`);
-      const job = jobString ? JSON.parse(jobString) : null;
-      console.log('📖 Job retrieved from Redis:', jobId, job ? 'found' : 'not found');
+      console.log('📖 Raw data from Redis for', jobId, ':', jobString);
+
+      if (!jobString) {
+        console.log('📖 No job found in Redis for:', jobId);
+        return null;
+      }
+
+      // Handle case where Redis returned an object instead of string
+      if (typeof jobString === 'object') {
+        console.log('📖 Redis returned object directly:', jobString);
+        return jobString;
+      }
+
+      const job = JSON.parse(jobString);
+      console.log('📖 Job parsed from Redis:', jobId, 'found');
       return job;
     } catch (error) {
       console.error('❌ Failed to retrieve job from Redis:', error);
+      console.error('❌ Raw value that failed to parse:', await redis.get(`job:${jobId}`));
       return null;
     }
   },
