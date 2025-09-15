@@ -1,6 +1,10 @@
 // Simple in-memory job storage
-// In production, use Redis or a database
-const jobs = new Map();
+// For serverless functions, we need to use a global variable that persists
+if (!globalThis.jobStorage) {
+  globalThis.jobStorage = new Map();
+}
+
+const jobs = globalThis.jobStorage;
 
 // Generate job ID
 function generateJobId() {
