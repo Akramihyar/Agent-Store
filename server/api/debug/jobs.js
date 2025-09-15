@@ -14,23 +14,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Get jobId from query parameter
-  const { jobId } = req.query;
-
-  if (!jobId) {
-    return res.status(400).json({ error: 'jobId query parameter is required' });
-  }
-
-  console.log('🔍 Looking for job:', jobId);
-
-  const job = await jobs.get(jobId);
-  if (!job) {
-    return res.status(404).json({
-      error: 'Job not found',
-      jobId: jobId,
-      availableJobs: Array.from(jobs.keys())
-    });
-  }
-
-  res.json(job);
+  const allJobs = Array.from(jobs.values());
+  res.json({
+    totalJobs: allJobs.length,
+    jobs: allJobs
+  });
 }
