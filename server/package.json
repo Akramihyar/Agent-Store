@@ -2,17 +2,8 @@
   "name": "agent-store-backend",
   "version": "1.0.0",
   "description": "Agent Store Backend API for Vercel Functions",
-  "main": "api/health.js",
-  "scripts": {
-    "dev": "vercel dev",
-    "build": "exit 0",
-    "deploy": "vercel --prod"
-  },
   "dependencies": {},
-  "devDependencies": {
-    "vercel": "^33.0.0"
-  },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "18.x"
   }
 }
