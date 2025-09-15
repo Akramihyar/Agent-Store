@@ -1,6 +1,7 @@
 {
   "name": "agent-store-backend",
   "version": "1.0.0",
+  "type": "module",
   "description": "Agent Store Backend API for Vercel Functions",
   "scripts": {
     "build": "echo 'Build completed for Vercel Functions'"

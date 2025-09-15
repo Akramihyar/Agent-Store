@@ -1,4 +1,4 @@
-const { jobs } = require('../../../lib/jobs');
+import { jobs } from '../../../lib/jobs.js';
 
 export default async function handler(req, res) {
   // Set CORS headers

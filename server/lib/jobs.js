@@ -20,11 +20,4 @@ function cleanupOldJobs() {
   }
 }
 
-// Run cleanup periodically
-setInterval(cleanupOldJobs, 60 * 60 * 1000); // 1 hour
-
-module.exports = {
-  jobs,
-  generateJobId,
-  cleanupOldJobs
-};
+export { jobs, generateJobId, cleanupOldJobs };

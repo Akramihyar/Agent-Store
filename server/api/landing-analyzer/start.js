@@ -1,4 +1,4 @@
-const { jobs, generateJobId } = require('../../lib/jobs');
+import { jobs, generateJobId } from '../../lib/jobs.js';
 
 export default async function handler(req, res) {
   // Set CORS headers
