@@ -1,0 +1,9 @@
+version: "3"
+agent:
+  authtoken: 2wiaLGPEhP0saFXJJYeFUrNP8xo_5YTn31aAMoZsYvbSD4fc
+tunnels:
+  backend:
+    proto: http
+    addr: 3001
+    schemes: [https]
+    inspect: false

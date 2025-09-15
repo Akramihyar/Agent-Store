@@ -53,8 +53,8 @@ export default function AssistantsPage() {
       </header>
       <ul className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
         {agents.map((a) => (
-          <li key={a.id} className="border rounded-xl p-6 bg-card hover:shadow-md transition-shadow">
-            <div className="flex items-start gap-6">
+          <li key={a.id} className="border rounded-xl p-6 bg-card hover:shadow-md transition-shadow h-full">
+            <div className="flex items-start gap-6 h-full">
               {/* Agent Avatar - Left Side */}
               <div className="flex-shrink-0">
                 <div 
@@ -72,18 +72,20 @@ export default function AssistantsPage() {
               </div>
               
               {/* Agent Content - Right Side */}
-              <div className="flex-1 min-w-0">
+              <div className="flex-1 min-w-0 flex flex-col justify-between h-full">
                 <div className="mb-3">
                   <h2 className="text-lg font-semibold text-foreground mb-1">{a.name}</h2>
                   <p className="text-sm text-muted-foreground leading-relaxed">{a.description}</p>
                 </div>
                 
-                <Link
-                  to={`/assistants/${a.id}/chat`}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                >
-                  Chat with agent
-                </Link>
+                <div className="mt-auto">
+                  <Link
+                    to={`/assistants/${a.id}/chat`}
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  >
+                    Launch Agent
+                  </Link>
+                </div>
               </div>
             </div>
           </li>
