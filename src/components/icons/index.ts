@@ -14,7 +14,3 @@ export * from './ChatIcon';
 export * from './SendIcon';
 export * from './PromptIcon';
 export * from './UploadIcon';
-export * from './AgentIcon';
-export * from './AgentSupportIcon';
-export * from './AgentSalesIcon';
-export * from './AgentOpsIcon';

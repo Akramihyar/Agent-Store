@@ -20,7 +20,7 @@ export default function SEOMissionForm({ badgeLabel }: { badgeLabel: string; age
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [jobId, setJobId] = useState<string | null>(null);
   const [pdfLink, setPdfLink] = useState<string | null>(null);
-  const pollIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const pollIntervalRef = useRef<number | null>(null);
 
   // Cleanup polling on unmount
   useEffect(() => {
