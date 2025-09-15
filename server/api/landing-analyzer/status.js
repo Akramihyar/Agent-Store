@@ -21,8 +21,10 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'jobId query parameter is required' });
   }
 
-  console.log('Looking for job:', jobId);
-  console.log('Available jobs:', Array.from(jobs.keys()));
+  console.log('🔍 Looking for job:', jobId);
+  console.log('📊 Total jobs in storage:', jobs.size);
+  console.log('🗂️ Available job IDs:', Array.from(jobs.keys()));
+  console.log('🔧 Job storage object:', Object.fromEntries(jobs));
 
   const job = jobs.get(jobId);
   if (!job) {

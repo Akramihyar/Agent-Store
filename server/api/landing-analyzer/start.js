@@ -23,13 +23,18 @@ export default async function handler(req, res) {
   const jobId = generateJobId();
 
   // Store job info
-  jobs.set(jobId, {
+  const newJob = {
     id: jobId,
     url: url,
     status: 'pending',
     createdAt: new Date().toISOString(),
     fileUrl: null
-  });
+  };
+
+  jobs.set(jobId, newJob);
+  console.log('✅ Job created:', jobId);
+  console.log('📊 Total jobs in storage:', jobs.size);
+  console.log('🗂️ Job details:', newJob);
 
   // Send job to n8n with callback URL
   const host = req.headers['x-forwarded-host'] || req.headers.host;
