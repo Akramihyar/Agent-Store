@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChatIcon, SettingsIcon } from '../components/icons';
 import LoadingDog from '../components/LoadingDog';
 
-const API_BASE_URL = 'http://localhost:3001';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
 
 interface JobStatus {
   id: string;
