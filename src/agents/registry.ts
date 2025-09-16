@@ -33,13 +33,6 @@ export const agents: AgentDefinition[] = [
   },
   {
     id: 'sales',
-    name: 'Website Intelligence Agent (Legacy)',
-    description: 'Get the full website content in an LLM ready text file along with download available PDFs.',
-    icon: 'sales',
-    endpoint: { type: 'webhook', url: SCRAPER_AGENT_WEBHOOK, method: 'POST' },
-  },
-  {
-    id: 'website-intelligence',
     name: 'Website Intelligence Agent',
     description: 'Get the full website content in an LLM ready text file along with download available PDFs.',
     icon: 'sales',

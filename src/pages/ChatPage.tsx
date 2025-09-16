@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { getAgentById } from '../agents/registry';
 import MainContent from '../components/MainContent';
-import SalesMissionForm from './SalesMissionForm';
+// import SalesMissionForm from './SalesMissionForm'; // Replaced with WebsiteIntelligenceForm
 import SEOMissionForm from './SEOMissionForm';
 import ResearchMissionForm from './ResearchMissionForm';
 import LandingAnalyzerForm from './LandingAnalyzerForm';
@@ -22,7 +22,7 @@ export default function ChatPage() {
   const label = agent ? agent.name : 'AI Agent';
 
   if (agent?.id === 'sales') {
-    return <SalesMissionForm badgeLabel={label} agentId={agent.id} />;
+    return <WebsiteIntelligenceForm badgeLabel={label} agentId={agent.id} />;
   }
   if (agent?.id === 'seo') {
     return <SEOMissionForm badgeLabel={label} agentId={agent.id} />;
@@ -59,9 +59,6 @@ export default function ChatPage() {
   }
   if (agent?.id === 'newsletter-curator') {
     return <NewsletterCuratorForm badgeLabel={label} agentId={agent.id} />;
-  }
-  if (agent?.id === 'website-intelligence') {
-    return <WebsiteIntelligenceForm badgeLabel={label} agentId={agent.id} />;
   }
 
   return <MainContent badgeLabel={label} agentId={agent?.id} />;

@@ -1,6 +1,5 @@
 [
   { "id": "support", "name": "Support Assistant", "description": "Answers customer support questions." },
-  { "id": "sales", "name": "Sales Assistant", "description": "Helps with product discovery and quotes." },
-  { "id": "website-intelligence", "name": "Website Intelligence Agent", "description": "Get the full website content in an LLM ready text file along with download available PDFs.", "category": "Sales", "tags": ["sales", "website", "content", "intelligence"], "rating": 4.5, "usage": "0", "icon": "sales" },
+  { "id": "sales", "name": "Website Intelligence Agent", "description": "Get the full website content in an LLM ready text file along with download available PDFs.", "category": "Sales", "tags": ["sales", "website", "content", "intelligence"], "rating": 4.5, "usage": "0", "icon": "sales" },
   { "id": "ops", "name": "Ops Assistant", "description": "Assists with operational tasks and checklists." }
 ]
