@@ -21,6 +21,7 @@ const EMAIL_DRAFTING_WEBHOOK = 'https://neulandai.app.n8n.cloud/webhook/email-dr
 const AD_COPY_GENERATOR_WEBHOOK = 'https://neulandai.app.n8n.cloud/webhook/ad-copy-generator';
 const BLOG_OUTLINE_WEBHOOK = 'https://neulandai.app.n8n.cloud/webhook/blog-outline-generator';
 const NEWSLETTER_CURATOR_WEBHOOK = 'https://neulandai.app.n8n.cloud/webhook/newsletter-curator';
+const WEBSITE_INTELLIGENCE_WEBHOOK = 'https://neulandai.app.n8n.cloud/webhook/website-Intelligence';
 
 export const agents: AgentDefinition[] = [
   {
@@ -32,10 +33,17 @@ export const agents: AgentDefinition[] = [
   },
   {
     id: 'sales',
-    name: 'Website Intelligence Agent',
+    name: 'Website Intelligence Agent (Legacy)',
     description: 'Get the full website content in an LLM ready text file along with download available PDFs.',
     icon: 'sales',
     endpoint: { type: 'webhook', url: SCRAPER_AGENT_WEBHOOK, method: 'POST' },
+  },
+  {
+    id: 'website-intelligence',
+    name: 'Website Intelligence Agent',
+    description: 'Get the full website content in an LLM ready text file along with download available PDFs.',
+    icon: 'sales',
+    endpoint: { type: 'webhook', url: WEBSITE_INTELLIGENCE_WEBHOOK, method: 'POST' },
   },
   {
     id: 'seo',

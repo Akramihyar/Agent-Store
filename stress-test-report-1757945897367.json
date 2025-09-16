@@ -1,0 +1,467 @@
+{
+  "testConfig": {
+    "concurrentUsers": 25,
+    "duration": 180,
+    "actualDuration": 259,
+    "timestamp": "2025-09-15T14:18:17.364Z",
+    "targetUrl": "https://agent-store-backend.vercel.app"
+  },
+  "results": {
+    "total": 49,
+    "successful": 48,
+    "failed": 0,
+    "timeouts": 1,
+    "errors": 0,
+    "successRate": "97.96%",
+    "requestsPerSecond": "0.19"
+  },
+  "performance": {
+    "avgDuration": 87991,
+    "maxDuration": 114048,
+    "minDuration": 57742,
+    "unit": "milliseconds"
+  },
+  "rawData": [
+    {
+      "userId": 0,
+      "jobId": "job_1757945639030_u5lm5c797",
+      "url": "https://example.com",
+      "status": "completed",
+      "duration": 94014,
+      "attempts": 42,
+      "timestamp": "2025-09-15T14:15:35.495Z"
+    },
+    {
+      "userId": 0,
+      "jobId": "job_1757945736599_qvpoe5juo",
+      "url": "https://example.com",
+      "status": "completed",
+      "duration": 73544,
+      "attempts": 33,
+      "timestamp": "2025-09-15T14:16:50.975Z"
+    },
+    {
+      "userId": 0,
+      "jobId": "job_1757945812079_12t9z7vvp",
+      "url": "https://example.com",
+      "status": "completed",
+      "duration": 57742,
+      "attempts": 26,
+      "timestamp": "2025-09-15T14:17:56.236Z"
+    },
+    {
+      "userId": 1,
+      "jobId": "job_1757945639049_9tsvzmycl",
+      "url": "https://google.com",
+      "status": "completed",
+      "duration": 100478,
+      "attempts": 45,
+      "timestamp": "2025-09-15T14:15:42.063Z"
+    },
+    {
+      "userId": 1,
+      "jobId": "job_1757945743163_30d6bo6ju",
+      "url": "https://google.com",
+      "status": "completed",
+      "duration": 89289,
+      "attempts": 40,
+      "timestamp": "2025-09-15T14:17:16.522Z"
+    },
+    {
+      "userId": 2,
+      "jobId": "job_1757945639229_m816tpfsg",
+      "url": "https://github.com",
+      "status": "completed",
+      "duration": 100308,
+      "attempts": 45,
+      "timestamp": "2025-09-15T14:17:15.727Z"
+    },
+    {
+      "userId": 3,
+      "jobId": "job_1757945638974_yumg6qudg",
+      "url": "https://stackoverflow.com",
+      "status": "completed",
+      "duration": 94134,
+      "attempts": 42,
+      "timestamp": "2025-09-15T14:15:35.463Z"
+    },
+    {
+      "userId": 3,
+      "jobId": "job_1757945736568_56bv122ve",
+      "url": "https://stackoverflow.com",
+      "status": "completed",
+      "duration": 98275,
+      "attempts": 44,
+      "timestamp": "2025-09-15T14:17:15.503Z"
+    },
+    {
+      "userId": 4,
+      "jobId": "job_1757945639004_sqjsptmg7",
+      "url": "https://vercel.com",
+      "status": "completed",
+      "duration": 82665,
+      "attempts": 37,
+      "timestamp": "2025-09-15T14:16:58.085Z"
+    },
+    {
+      "userId": 5,
+      "jobId": "job_1757945638990_dof5liv0k",
+      "url": "https://example.com",
+      "status": "completed",
+      "duration": 73914,
+      "attempts": 33,
+      "timestamp": "2025-09-15T14:16:35.564Z"
+    },
+    {
+      "userId": 5,
+      "jobId": "job_1757945796667_2st4got39",
+      "url": "https://example.com",
+      "status": "completed",
+      "duration": 57960,
+      "attempts": 26,
+      "timestamp": "2025-09-15T14:17:56.327Z"
+    },
+    {
+      "userId": 6,
+      "jobId": "job_1757945638984_p2jx7cyos",
+      "url": "https://google.com",
+      "status": "completed",
+      "duration": 103136,
+      "attempts": 46,
+      "timestamp": "2025-09-15T14:15:44.297Z"
+    },
+    {
+      "userId": 6,
+      "jobId": "job_1757945745395_l6feblk1x",
+      "url": "https://google.com",
+      "status": "completed",
+      "duration": 77884,
+      "attempts": 35,
+      "timestamp": "2025-09-15T14:17:53.808Z"
+    },
+    {
+      "userId": 7,
+      "jobId": "job_1757945639029_1ggdcqgwf",
+      "url": "https://github.com",
+      "status": "completed",
+      "duration": 98419,
+      "attempts": 44,
+      "timestamp": "2025-09-15T14:15:40.036Z"
+    },
+    {
+      "userId": 7,
+      "jobId": "job_1757945741134_rax696qtd",
+      "url": "https://github.com",
+      "status": "completed",
+      "duration": 102628,
+      "attempts": 46,
+      "timestamp": "2025-09-15T14:17:29.421Z"
+    },
+    {
+      "userId": 8,
+      "jobId": "job_1757945639025_5ztlo23we",
+      "url": "https://stackoverflow.com",
+      "status": "completed",
+      "duration": 96352,
+      "attempts": 43,
+      "timestamp": "2025-09-15T14:15:37.724Z"
+    },
+    {
+      "userId": 8,
+      "jobId": "job_1757945738825_an3m23ybe",
+      "url": "https://stackoverflow.com",
+      "status": "completed",
+      "duration": 93704,
+      "attempts": 42,
+      "timestamp": "2025-09-15T14:17:16.075Z"
+    },
+    {
+      "userId": 9,
+      "jobId": "job_1757945639012_w6lciipro",
+      "url": "https://vercel.com",
+      "status": "completed",
+      "duration": 80314,
+      "attempts": 36,
+      "timestamp": "2025-09-15T14:16:55.572Z"
+    },
+    {
+      "userId": 9,
+      "jobId": "job_1757945816673_e2v2qsb32",
+      "url": "https://vercel.com",
+      "status": "completed",
+      "duration": 64442,
+      "attempts": 29,
+      "timestamp": "2025-09-15T14:18:16.363Z"
+    },
+    {
+      "userId": 10,
+      "jobId": "job_1757945639039_2tw4m4tzs",
+      "url": "https://example.com",
+      "status": "timeout",
+      "duration": 133834,
+      "attempts": 60,
+      "timestamp": "2025-09-15T14:16:15.503Z"
+    },
+    {
+      "userId": 10,
+      "jobId": "job_1757945776603_68qeoxfnp",
+      "url": "https://example.com",
+      "status": "completed",
+      "duration": 71744,
+      "attempts": 32,
+      "timestamp": "2025-09-15T14:18:09.070Z"
+    },
+    {
+      "userId": 11,
+      "jobId": "job_1757945639038_jb0lw8rwx",
+      "url": "https://google.com",
+      "status": "completed",
+      "duration": 94048,
+      "attempts": 42,
+      "timestamp": "2025-09-15T14:15:35.382Z"
+    },
+    {
+      "userId": 11,
+      "jobId": "job_1757945736510_f19e7zgys",
+      "url": "https://google.com",
+      "status": "completed",
+      "duration": 95820,
+      "attempts": 43,
+      "timestamp": "2025-09-15T14:17:13.504Z"
+    },
+    {
+      "userId": 12,
+      "jobId": "job_1757945639002_0fdqpd5p3",
+      "url": "https://github.com",
+      "status": "completed",
+      "duration": 114048,
+      "attempts": 51,
+      "timestamp": "2025-09-15T14:15:55.673Z"
+    },
+    {
+      "userId": 12,
+      "jobId": "job_1757945756772_pgjzv6f6b",
+      "url": "https://github.com",
+      "status": "completed",
+      "duration": 76043,
+      "attempts": 34,
+      "timestamp": "2025-09-15T14:18:10.426Z"
+    },
+    {
+      "userId": 13,
+      "jobId": "job_1757945638981_u66nhrglr",
+      "url": "https://stackoverflow.com",
+      "status": "completed",
+      "duration": 100951,
+      "attempts": 45,
+      "timestamp": "2025-09-15T14:15:42.494Z"
+    },
+    {
+      "userId": 13,
+      "jobId": "job_1757945743605_vme084u5n",
+      "url": "https://stackoverflow.com",
+      "status": "completed",
+      "duration": 64900,
+      "attempts": 29,
+      "timestamp": "2025-09-15T14:17:34.872Z"
+    },
+    {
+      "userId": 14,
+      "jobId": "job_1757945638980_u70wo766v",
+      "url": "https://vercel.com",
+      "status": "completed",
+      "duration": 94103,
+      "attempts": 42,
+      "timestamp": "2025-09-15T14:15:35.394Z"
+    },
+    {
+      "userId": 14,
+      "jobId": "job_1757945736507_j2e4gs9fm",
+      "url": "https://vercel.com",
+      "status": "completed",
+      "duration": 84803,
+      "attempts": 38,
+      "timestamp": "2025-09-15T14:17:01.937Z"
+    },
+    {
+      "userId": 15,
+      "jobId": "job_1757945639017_ji0cf3bzs",
+      "url": "https://example.com",
+      "status": "completed",
+      "duration": 80895,
+      "attempts": 36,
+      "timestamp": "2025-09-15T14:15:22.154Z"
+    },
+    {
+      "userId": 15,
+      "jobId": "job_1757945723257_yt6ex42pa",
+      "url": "https://example.com",
+      "status": "completed",
+      "duration": 82545,
+      "attempts": 37,
+      "timestamp": "2025-09-15T14:16:57.975Z"
+    },
+    {
+      "userId": 16,
+      "jobId": "job_1757945639013_tfej6rnls",
+      "url": "https://google.com",
+      "status": "completed",
+      "duration": 100837,
+      "attempts": 45,
+      "timestamp": "2025-09-15T14:15:42.355Z"
+    },
+    {
+      "userId": 16,
+      "jobId": "job_1757945743453_8amypz94g",
+      "url": "https://google.com",
+      "status": "completed",
+      "duration": 78131,
+      "attempts": 35,
+      "timestamp": "2025-09-15T14:17:30.638Z"
+    },
+    {
+      "userId": 17,
+      "jobId": "job_1757945639020_2mp18sz5e",
+      "url": "https://github.com",
+      "status": "completed",
+      "duration": 107451,
+      "attempts": 48,
+      "timestamp": "2025-09-15T14:15:48.843Z"
+    },
+    {
+      "userId": 17,
+      "jobId": "job_1757945749958_fjemfpapi",
+      "url": "https://github.com",
+      "status": "completed",
+      "duration": 77954,
+      "attempts": 35,
+      "timestamp": "2025-09-15T14:18:09.684Z"
+    },
+    {
+      "userId": 18,
+      "jobId": "job_1757945639027_da50i6ojl",
+      "url": "https://stackoverflow.com",
+      "status": "completed",
+      "duration": 94888,
+      "attempts": 42,
+      "timestamp": "2025-09-15T14:15:36.488Z"
+    },
+    {
+      "userId": 18,
+      "jobId": "job_1757945737588_bm1z4i6ds",
+      "url": "https://stackoverflow.com",
+      "status": "completed",
+      "duration": 96127,
+      "attempts": 43,
+      "timestamp": "2025-09-15T14:17:17.240Z"
+    },
+    {
+      "userId": 19,
+      "jobId": "job_1757945639064_e33zpyhfh",
+      "url": "https://vercel.com",
+      "status": "completed",
+      "duration": 100686,
+      "attempts": 45,
+      "timestamp": "2025-09-15T14:15:42.328Z"
+    },
+    {
+      "userId": 19,
+      "jobId": "job_1757945743428_u8zlt16oj",
+      "url": "https://vercel.com",
+      "status": "completed",
+      "duration": 87028,
+      "attempts": 39,
+      "timestamp": "2025-09-15T14:17:18.513Z"
+    },
+    {
+      "userId": 20,
+      "jobId": "job_1757945639018_wrehysmon",
+      "url": "https://example.com",
+      "status": "completed",
+      "duration": 94259,
+      "attempts": 42,
+      "timestamp": "2025-09-15T14:15:35.683Z"
+    },
+    {
+      "userId": 20,
+      "jobId": "job_1757945736786_90awf4kyv",
+      "url": "https://example.com",
+      "status": "completed",
+      "duration": 71442,
+      "attempts": 32,
+      "timestamp": "2025-09-15T14:16:51.632Z"
+    },
+    {
+      "userId": 20,
+      "jobId": "job_1757945812735_dbnedk1zb",
+      "url": "https://example.com",
+      "status": "completed",
+      "duration": 62273,
+      "attempts": 28,
+      "timestamp": "2025-09-15T14:18:02.717Z"
+    },
+    {
+      "userId": 21,
+      "jobId": "job_1757945639025_fusgfvqu8",
+      "url": "https://google.com",
+      "status": "completed",
+      "duration": 107292,
+      "attempts": 48,
+      "timestamp": "2025-09-15T14:15:48.741Z"
+    },
+    {
+      "userId": 21,
+      "jobId": "job_1757945749848_c65s3i6ow",
+      "url": "https://google.com",
+      "status": "completed",
+      "duration": 74017,
+      "attempts": 33,
+      "timestamp": "2025-09-15T14:18:04.793Z"
+    },
+    {
+      "userId": 22,
+      "jobId": "job_1757945638998_wsf2cmnt2",
+      "url": "https://github.com",
+      "status": "completed",
+      "duration": 96617,
+      "attempts": 43,
+      "timestamp": "2025-09-15T14:15:37.606Z"
+    },
+    {
+      "userId": 22,
+      "jobId": "job_1757945738705_xpvxkk394",
+      "url": "https://github.com",
+      "status": "completed",
+      "duration": 98303,
+      "attempts": 44,
+      "timestamp": "2025-09-15T14:17:20.473Z"
+    },
+    {
+      "userId": 23,
+      "jobId": "job_1757945639021_f10fvkbyv",
+      "url": "https://stackoverflow.com",
+      "status": "completed",
+      "duration": 96291,
+      "attempts": 43,
+      "timestamp": "2025-09-15T14:15:37.620Z"
+    },
+    {
+      "userId": 23,
+      "jobId": "job_1757945738720_zpi3wn9kn",
+      "url": "https://stackoverflow.com",
+      "status": "completed",
+      "duration": 95969,
+      "attempts": 43,
+      "timestamp": "2025-09-15T14:17:18.328Z"
+    },
+    {
+      "userId": 24,
+      "jobId": "job_1757945639001_mred4shyq",
+      "url": "https://vercel.com",
+      "status": "completed",
+      "duration": 84892,
+      "attempts": 38,
+      "timestamp": "2025-09-15T14:16:59.395Z"
+    }
+  ]
+}

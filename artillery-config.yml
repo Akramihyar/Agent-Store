@@ -1,0 +1,72 @@
+config:
+  target: 'https://agent-store-backend.vercel.app'
+  phases:
+    # Warm-up phase
+    - duration: 60
+      arrivalRate: 1
+      name: "Warm up"
+
+    # Ramp up phase
+    - duration: 300
+      arrivalRate: 1
+      rampTo: 5
+      name: "Ramp up load"
+
+    # Sustained load
+    - duration: 600
+      arrivalRate: 5
+      name: "Sustained load"
+
+    # Stress test
+    - duration: 300
+      arrivalRate: 5
+      rampTo: 20
+      name: "Stress test"
+
+  payload:
+    - path: './test-urls.csv'
+      fields:
+        - url
+
+scenarios:
+  - name: "Landing Analyzer Load Test"
+    weight: 70
+    flow:
+      - post:
+          url: "/api/landing-analyzer/start"
+          json:
+            url: "{{ url }}"
+          capture:
+            - json: "$.job_id"
+              as: "jobId"
+
+      - loop:
+          - get:
+              url: "/api/landing-analyzer/status?jobId={{ jobId }}"
+              capture:
+                - json: "$.status"
+                  as: "status"
+          - think: 2
+        while: "{{ status !== 'completed' && status !== 'failed' }}"
+        count: 30
+
+  - name: "SEO Audit Load Test"
+    weight: 30
+    flow:
+      - post:
+          url: "/api/seo/start"
+          json:
+            url: "{{ url }}"
+          capture:
+            - json: "$.job_id"
+              as: "jobId"
+
+      - loop:
+          - get:
+              url: "/api/seo/status?jobId={{ jobId }}"
+              capture:
+                - json: "$.status"
+                  as: "status"
+          - think: 2
+        while: "{{ status !== 'completed' && status !== 'failed' }}"
+        count: 30

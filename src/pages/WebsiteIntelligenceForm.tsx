@@ -3,11 +3,13 @@ import { ChatIcon, SettingsIcon } from '../components/icons';
 import LoadingDog from '../components/LoadingDog';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
-console.log('🔍 Landing Analyzer API_BASE_URL:', API_BASE_URL);
+console.log('🔍 Website Intelligence API_BASE_URL:', API_BASE_URL);
 
 interface JobStatus {
   id: string;
-  url: string;
+  company_name: string;
+  website_url: string;
+  number_documents: number;
   status: 'pending' | 'processing' | 'completed' | 'failed';
   createdAt: string;
   fileUrl?: string;
@@ -15,12 +17,14 @@ interface JobStatus {
   completedAt?: string;
 }
 
-export default function LandingAnalyzerForm({ badgeLabel }: { badgeLabel: string; agentId: string }) {
+export default function WebsiteIntelligenceForm({ badgeLabel }: { badgeLabel: string; agentId: string }) {
+  const [companyName, setCompanyName] = useState('');
   const [websiteUrl, setWebsiteUrl] = useState('');
+  const [numberDocuments, setNumberDocuments] = useState(5);
   const [status, setStatus] = useState<'idle' | 'starting' | 'processing' | 'completed' | 'failed'>('idle');
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [jobId, setJobId] = useState<string | null>(null);
-  const [pdfLink, setPdfLink] = useState<string | null>(null);
+  const [fileLink, setFileLink] = useState<string | null>(null);
   const pollIntervalRef = useRef<number | null>(null);
 
   // Cleanup polling on unmount
@@ -35,29 +39,29 @@ export default function LandingAnalyzerForm({ badgeLabel }: { badgeLabel: string
   // Poll job status
   const pollJobStatus = async (jobId: string) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/landing-analyzer/status?jobId=${jobId}`);
-      
+      const response = await fetch(`${API_BASE_URL}/api/website-intelligence/status?jobId=${jobId}`);
+
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
-      
+
       const job: JobStatus = await response.json();
-      
+
       if (job.status === 'completed' && job.fileUrl) {
-        setPdfLink(job.fileUrl);
+        setFileLink(job.fileUrl);
         setStatus('completed');
         if (pollIntervalRef.current) {
           clearInterval(pollIntervalRef.current);
         }
       } else if (job.status === 'failed') {
         setStatus('failed');
-        setErrorMsg(job.error || 'Analysis failed');
+        setErrorMsg(job.error || 'Website intelligence analysis failed');
         if (pollIntervalRef.current) {
           clearInterval(pollIntervalRef.current);
         }
       }
       // Continue polling if still processing
-      
+
     } catch (error) {
       console.error('Polling error:', error);
       // Don't stop polling on network errors, just log them
@@ -66,45 +70,47 @@ export default function LandingAnalyzerForm({ badgeLabel }: { badgeLabel: string
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       setStatus('starting');
       setErrorMsg(null);
-      setPdfLink(null);
+      setFileLink(null);
       setJobId(null);
-      
+
       // Start analysis via backend
-      const response = await fetch(`${API_BASE_URL}/api/landing-analyzer/start`, {
+      const response = await fetch(`${API_BASE_URL}/api/website-intelligence/start`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          url: websiteUrl
+          company_name: companyName,
+          website_url: websiteUrl,
+          number_documents: numberDocuments
         })
       });
-      
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
         throw new Error(errorData.error || `HTTP ${response.status}`);
       }
-      
+
       const result = await response.json();
-      
+
       setJobId(result.job_id);
       setStatus('processing');
-      
+
       // Start polling for results every 5 seconds
       pollIntervalRef.current = setInterval(() => {
         pollJobStatus(result.job_id);
       }, 5000);
-      
+
       // Also poll immediately
       setTimeout(() => pollJobStatus(result.job_id), 1000);
-      
+
     } catch (err: unknown) {
       setStatus('failed');
-      setErrorMsg(err instanceof Error ? err.message : 'Failed to start analysis');
+      setErrorMsg(err instanceof Error ? err.message : 'Failed to start website intelligence analysis');
     }
   };
 
@@ -128,16 +134,44 @@ export default function LandingAnalyzerForm({ badgeLabel }: { badgeLabel: string
         <div className="p-4 space-y-3">
           <form onSubmit={onSubmit} className="space-y-3">
             <div>
+              <label htmlFor="company-name" className="block text-sm font-medium mb-1">Company Name</label>
+              <input
+                id="company-name"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+                placeholder="Example Company"
+                className="w-full border rounded-md px-3 py-2 bg-card"
+                data-testid="company-name-input"
+                required
+              />
+            </div>
+            <div>
               <label htmlFor="website-url" className="block text-sm font-medium mb-1">Website URL</label>
               <input
                 id="website-url"
+                type="url"
                 value={websiteUrl}
                 onChange={(e) => setWebsiteUrl(e.target.value)}
                 placeholder="https://example.com"
                 className="w-full border rounded-md px-3 py-2 bg-card"
-                data-testid="url-input"
+                data-testid="website-url-input"
                 required
               />
+            </div>
+            <div>
+              <label htmlFor="number-documents" className="block text-sm font-medium mb-1">Number of Documents</label>
+              <select
+                id="number-documents"
+                value={numberDocuments}
+                onChange={(e) => setNumberDocuments(Number(e.target.value))}
+                className="w-full border rounded-md px-3 py-2 bg-card"
+                data-testid="number-documents-select"
+              >
+                <option value={5}>5 documents</option>
+                <option value={10}>10 documents</option>
+                <option value={15}>15 documents</option>
+                <option value={20}>20 documents</option>
+              </select>
             </div>
             <button
               type="submit"
@@ -145,9 +179,9 @@ export default function LandingAnalyzerForm({ badgeLabel }: { badgeLabel: string
               data-testid="analyze-button"
               disabled={status === 'starting' || status === 'processing'}
             >
-              {status === 'starting' ? 'Starting...' : 
-               status === 'processing' ? 'Analyzing...' : 
-               'Analyze Landing Page'}
+              {status === 'starting' ? 'Starting...' :
+               status === 'processing' ? 'Processing...' :
+               'Start Website Intelligence'}
             </button>
           </form>
 
@@ -160,9 +194,9 @@ export default function LandingAnalyzerForm({ badgeLabel }: { badgeLabel: string
                     {status === 'starting' ? 'Starting Analysis...' : 'Analysis in Progress'}
                   </p>
                   <p className="text-sm text-blue-700">
-                    {status === 'starting' ? 
-                      'Initializing your landing page analysis...' :
-                      'Generating your comprehensive audit report... This takes about 3 minutes.'
+                    {status === 'starting' ?
+                      'Initializing website intelligence analysis...' :
+                      'Extracting website content and documents... This takes about 1 minute.'
                     }
                   </p>
                   {jobId && (
@@ -183,23 +217,23 @@ export default function LandingAnalyzerForm({ badgeLabel }: { badgeLabel: string
             </div>
           )}
 
-          {status === 'completed' && pdfLink && (
+          {status === 'completed' && fileLink && (
             <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
-              <h3 className="text-lg font-semibold text-green-900 mb-2">Analysis Complete! 🎉</h3>
+              <h3 className="text-lg font-semibold text-green-900 mb-2">Website Intelligence Complete! 🎉</h3>
               <p className="text-sm text-green-700 mb-3">
-                Your comprehensive landing page audit report has been generated and is ready for download.
+                Your website content and documents have been extracted and are ready for download.
               </p>
               <div className="flex gap-2 flex-wrap">
-                <a 
-                  href={pdfLink} 
-                  target="_blank" 
+                <a
+                  href={fileLink}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-700 transition-colors"
                 >
-                  📄 View PDF Report
+                  📄 Download Files
                 </a>
-                <button 
-                  onClick={() => navigator.clipboard.writeText(pdfLink)}
+                <button
+                  onClick={() => navigator.clipboard.writeText(fileLink)}
                   className="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-md text-sm font-medium hover:bg-gray-700 transition-colors"
                 >
                   📋 Copy Link
@@ -207,7 +241,7 @@ export default function LandingAnalyzerForm({ badgeLabel }: { badgeLabel: string
               </div>
               <div className="mt-3 p-2 bg-white rounded border">
                 <p className="text-xs text-gray-600 break-all">
-                  {pdfLink}
+                  {fileLink}
                 </p>
               </div>
               {jobId && (

@@ -1,6 +1,6 @@
 export default function LoadingDog() {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2" data-testid="loading-dog">
       <span className="text-2xl animate-bounce" aria-hidden>
         🐶
       </span>

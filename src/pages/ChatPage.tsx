@@ -14,6 +14,7 @@ import EmailDraftingForm from './EmailDraftingForm';
 import AdCopyGeneratorForm from './AdCopyGeneratorForm';
 import BlogOutlineGeneratorForm from './BlogOutlineGeneratorForm';
 import NewsletterCuratorForm from './NewsletterCuratorForm';
+import WebsiteIntelligenceForm from './WebsiteIntelligenceForm';
 
 export default function ChatPage() {
   const { id } = useParams();
@@ -58,6 +59,9 @@ export default function ChatPage() {
   }
   if (agent?.id === 'newsletter-curator') {
     return <NewsletterCuratorForm badgeLabel={label} agentId={agent.id} />;
+  }
+  if (agent?.id === 'website-intelligence') {
+    return <WebsiteIntelligenceForm badgeLabel={label} agentId={agent.id} />;
   }
 
   return <MainContent badgeLabel={label} agentId={agent?.id} />;
