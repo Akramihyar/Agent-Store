@@ -6,7 +6,7 @@ import { AgentDefinition } from './types';
 // import { opsAgent } from './ops';
 
 // const N8N_TEST_WEBHOOK = 'https://neulandai.app.n8n.cloud/webhook/website-scraper';
-const SCRAPER_AGENT_WEBHOOK = 'https://neulandai.app.n8n.cloud/webhook/website-scraper';
+// const SCRAPER_AGENT_WEBHOOK = 'https://neulandai.app.n8n.cloud/webhook/website-scraper'; // Legacy - not used
 const SEO_AGENT_WEBHOOK = 'https://neulandai.app.n8n.cloud/webhook/seo-audit-agent';
 const RESEARCH_AGENT_WEBHOOK = 'https://neulandai.app.n8n.cloud/webhook/research-agent';
 const SUPPORT_AGENT_WEBHOOK = 'https://neulandai.app.n8n.cloud/webhook/support-agent';

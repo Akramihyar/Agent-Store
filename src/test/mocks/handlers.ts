@@ -12,7 +12,7 @@ export const handlers = [
 
   // Landing analyzer start mock
   http.post('*/api/landing-analyzer/start', async ({ request }) => {
-    const body = await request.json() as any;
+    await request.json(); // Read body to satisfy request
     return HttpResponse.json({
       job_id: 'test_job_123',
       status: 'started',
@@ -44,7 +44,7 @@ export const handlers = [
 
   // SEO analyzer start mock
   http.post('*/api/seo/start', async ({ request }) => {
-    const body = await request.json() as any;
+    await request.json(); // Read body to satisfy request
     return HttpResponse.json({
       job_id: 'test_seo_job_456',
       status: 'started',
@@ -77,7 +77,7 @@ export const handlers = [
 
   // Website Intelligence start mock
   http.post('*/api/website-intelligence/start', async ({ request }) => {
-    const body = await request.json() as any;
+    await request.json(); // Read body to satisfy request
     return HttpResponse.json({
       job_id: 'test_website_job_789',
       status: 'started',
