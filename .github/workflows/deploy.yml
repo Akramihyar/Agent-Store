@@ -18,10 +18,12 @@ jobs:
             dockerfile: Dockerfile
             image_name: ai-hub-agent-store-backend
             app_name: ai-hub-agent-store-backend
+            port: 3001
           - context: .
             dockerfile: Dockerfile
             image_name: ai-hub-agent-store-frontend
             app_name: ai-hub-agent-store-frontend
+            port: 80
 
     steps:
       - name: Checkout code
@@ -61,11 +63,10 @@ jobs:
           IMAGE="${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ matrix.image_name }}:${{ github.run_id }}"
           echo "Updating container app ${{ matrix.app_name }} with new image: $IMAGE"
 
-          # Update container app with new image and ensure correct port is exposed
+          # Update container app with new image
           az containerapp update \
             --name ${{ matrix.app_name }} \
             --resource-group ${{ env.RESOURCE_GROUP }} \
-            --image "$IMAGE" \
-            --target-port ${{ matrix.port }}
+            --image "$IMAGE"
 
-          echo "✅ Successfully deployed ${{ matrix.app_name }} on port ${{ matrix.port }}"
+          echo "✅ Successfully deployed ${{ matrix.app_name }} with image $IMAGE"
