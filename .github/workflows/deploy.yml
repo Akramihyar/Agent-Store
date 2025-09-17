@@ -18,12 +18,10 @@ jobs:
             dockerfile: Dockerfile
             image_name: ai-hub-agent-store-backend
             app_name: ai-hub-agent-store-backend
-            port: 3001
           - context: .
             dockerfile: Dockerfile
             image_name: ai-hub-agent-store-frontend
             app_name: ai-hub-agent-store-frontend
-            port: 80
 
     steps:
       - name: Checkout code
